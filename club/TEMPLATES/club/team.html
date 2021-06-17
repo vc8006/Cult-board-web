@@ -1,8 +1,0 @@
-{% extends "club/base.html" %}
-{% block content %}
-{% for member in members %}
-<img src="{{ member.image.url }}" alt="">
-<h2>{{ member.title }}</h2>
-<p>{{ member.position }}</p>
-{% endfor %}
-{% endblock %}
