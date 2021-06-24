@@ -1,8 +1,12 @@
 {% extends "club/base.html" %}
 {% block content %}
 {% for member in members %}
-<img src="{{ member.image.url }}" alt="">
-<h2>{{ member.title }}</h2>
-<p>{{ member.position }}</p>
+    <img src="{{ member.image.url }}" alt="">
+    <h2>{{ member.name }}</h2>
+    <p>{{ member.position }}</p>
+    <a href="{{member.fb_link}}">Fb</a>
+    <a href="{{member.insta_link}}">Insta</a>
+    <a href="{{member.linkedin_link}}">LinkedIn</a>
+    <br>
 {% endfor %}
 {% endblock %}

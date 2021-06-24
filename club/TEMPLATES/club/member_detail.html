@@ -1,0 +1,13 @@
+{% extends "club/base.html" %}
+{% block content %}
+    <img src="{{ object.image.url }}" alt="">
+    <h2>{{ object.name }}</h2>
+    <p>{{ object.position }}</p>
+    <a href="{{ object.fb_link }}">Fb</a>
+    <a href="{{ object.insta_link }}">Insta</a>
+    <a href="{{ object.linkedin_link }}">LinkedIn</a>
+    <br>
+    <a href="{% url "member-update" member.id %}"><button type="button" name="button">Update</button></a>
+    <a href="{% url "member-delete" member.id %}"><button type="button" name="button">Delete</button></a>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "club/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>{{ object.title }}</h2>
+    <img src="{{ object.image.url }}" alt="No Image"><br>
+    <a href="{% url "photo-update" photo.id %}"><button type="button" name="button">Update</button></a>
+    <a href="{% url "photo-delete" photo.id %}"><button type="button" name="button">Delete</button></a>
+</div>
+{% endblock %}

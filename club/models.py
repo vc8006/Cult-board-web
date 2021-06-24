@@ -1,21 +1,16 @@
 from django.db import models
 from django.utils import timezone
-
+from django.urls import reverse
 # Create your models here.
-class Post(models.Model):
-    title =models.CharField(max_length=(100))
-    content =models.TextField()
-    date=models.DateTimeField(default = timezone.now)
-    author = models.CharField(max_length=(100))
+class Club(models.Model):
+    name = models.CharField(default=None,max_length= 40)
 
     def __str__(self):
-        return self.title
-
-class Photo(models.Model):
-    image = models.ImageField(default = 'default.jpg',upload_to="media/images")
+        return self.name
 
 class Member(models.Model):
-    title = models.CharField(default = None,max_length=(100))
+    club = models.ForeignKey(Club,on_delete=models.CASCADE)
+    name = models.CharField(default = None,max_length=(100))
     image = models.ImageField(default = 'default.jpg',upload_to="media/team")
     position = models.CharField(default= None,max_length=(100))
     phone_number = models.IntegerField(blank=True)
@@ -25,3 +20,40 @@ class Member(models.Model):
 
     def __str__(self):
         return self.position
+
+    def get_absolute_url(self):
+        return reverse('member-detail',kwargs={'pk': self.pk})
+
+class Post(models.Model):
+    club = models.ForeignKey(Club,on_delete=models.CASCADE)
+    title =models.CharField(max_length=(100))
+    content =models.TextField()
+    date=models.DateTimeField(default = timezone.now)
+    author = models.CharField(max_length=(100))
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog-detail',kwargs={'pk': self.pk})
+
+class Photo(models.Model):
+    club = models.ForeignKey(Club,on_delete=models.CASCADE)
+    title = models.CharField(max_length=(100))
+    image = models.ImageField(default = 'default.jpg',upload_to="media/images")
+
+    def __str__(self):
+        return self.title
+
+class Achieve(models.Model):
+    club = models.ForeignKey(Club,on_delete=models.CASCADE)
+    title = models.CharField(default = None, max_length=(200))
+    image = models.ImageField(default='default.jpg',upload_to='media/achieve')
+    content = models.TextField()
+    date = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('achieve-detail',kwargs={'pk': self.pk})
