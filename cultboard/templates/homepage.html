@@ -13,6 +13,10 @@
         <a href="#" class="w3-bar-item w3-button">Services</a>
         <a href="#" class="w3-bar-item w3-button">About Us</a>
       </div>
+        <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
       <h1>Home page Content </h1>
 </body>
 </html>
