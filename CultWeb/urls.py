@@ -19,8 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('club.urls')),
+    path('stud/gymkhana/CulturalBoard/admin/', admin.site.urls),
+    path('stud/gymkhana/CulturalBoard/Club/',include('club.urls')),
 ]
 
 if settings.DEBUG :

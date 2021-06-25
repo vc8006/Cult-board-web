@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from PIL import Image
 # Create your models here.
 class Club(models.Model):
     name = models.CharField(default=None,max_length= 40)
@@ -44,6 +45,19 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('photo-detail',kwargs={'pk': self.pk})
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if(img.height>300 or img.width>300):
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 class Achieve(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE)

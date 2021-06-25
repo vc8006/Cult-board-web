@@ -66,7 +66,7 @@ class MemberUpdateView(UpdateView):
     fields = ['club','name','image','position','phone_number','fb_link','insta_link','linkedin_link']
 
 class MemberDeleteView(DeleteView):
-    model = Post
+    model = Member
     success_url= '/clubsecy'
 
 class AchieveDetailView(DetailView):
@@ -77,12 +77,13 @@ class AchieveCreateView(CreateView):
     fields = ['club','title','image','content','date']
 
 class AchieveUpdateView(UpdateView):
-    model = Post
-    fields = ['club','title','content','author']
+    model = Achieve
+    fields = ['club','title','image','content','date']
 
 class AchieveDeleteView(DeleteView):
-    model = Post
+    model = Achieve
     success_url= '/clubsecy'
+
 class PhotoDetailView(DetailView):
     model = Photo
 
@@ -92,7 +93,7 @@ class PhotoCreateView(CreateView):
 
 class PhotoUpdateView(UpdateView):
     model = Photo
-    fields = ['club','title','image']
+    fields = ['club','title','image',]
 
 class PhotoDeleteView(DeleteView):
     model = Photo

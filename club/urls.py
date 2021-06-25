@@ -10,6 +10,7 @@ urlpatterns = [
     path('events/',views.events,name='club-events'),
     path('gallery/',views.gallery,name='club-gallery'),
     path('gallery/<int:pk>',PhotoDetailView.as_view(),name='photo-detail'),
+    path('gallery/new',PhotoCreateView.as_view(),name='photo-create'),
     path('gallery/<int:pk>/update',PhotoUpdateView.as_view(),name='photo-update'),
     path('gallery/<int:pk>/delete',PhotoDeleteView.as_view(),name='photo-delete'),
     path('blog/',views.blog,name='club-blogs'),
