@@ -1,23 +1,21 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.http import HttpResponseRedirect
-from .forms import TeamMember
+from .forms import TeamMember, Home
 
 # Create your views here.
 
 
 def homepage(request):
     if request.method == 'POST':
-        form = TeamMember(request.POST)
-        if form.is_valid():
-            print('Hello')
-            print(form.cleaned_data)
+        form1 = TeamMember(request.POST)
+        if form1.is_valid():
+            form1.save()
+            print(form1.cleaned_data)
             return HttpResponseRedirect('/stud/gymkhana/cultural-board/')
-
     else:
-        form = TeamMember()
-
-    return render(request, 'homepage.html', {'form': form})
+        form1 = TeamMember()
+    return render(request, 'homepage.html', {'form1': form1})
 
 
 def clubs(request):

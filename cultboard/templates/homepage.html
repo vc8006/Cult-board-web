@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Document</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  </head>
+  <body>
+    <script>
+      function loadDoc() {
+        choice = document.getElementById("choice").value;
+        if (choice == "1") {
+          document.getElementById("team_form").hidden = false;
+        }
+      }
+    </script>
     <div class="w3-bar w3-black">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="#" class="w3-bar-item w3-button">Club</a>
-        <a href="#" class="w3-bar-item w3-button">Major Events</a>
-        <a href="#" class="w3-bar-item w3-button">Upcoming Events</a>
-        <a href="#" class="w3-bar-item w3-button">Services</a>
-        <a href="#" class="w3-bar-item w3-button">About Us</a>
-      </div>
-        <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
-      <h1>Home page Content </h1>
-</body>
+      <a href="#" class="w3-bar-item w3-button">Home</a>
+      <a href="#" class="w3-bar-item w3-button">Club</a>
+      <a href="#" class="w3-bar-item w3-button">Major Events</a>
+      <a href="#" class="w3-bar-item w3-button">Upcoming Events</a>
+      <a href="#" class="w3-bar-item w3-button">Services</a>
+      <a href="#" class="w3-bar-item w3-button">About Us</a>
+    </div>
+    <h1>Form:</h1>
+    <div class="choice_form">
+      <select name="main_choice" id="choice">
+        <option value="1">Add a Team Member</option>
+        <option value="2">Add a Gallery Event</option>
+        <option value="3">Add a Major Event</option>
+        <option value="4">Add an Upcoming Event</option>
+        <option value="5">Add a club</option>
+      </select>
+    </div>
+    <div id="team_form" hidden="true">
+      <form action="" method="post">
+        {% csrf_token %} {{ form1 }}
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+    <button type="button" onchange="loadDoc()">Try it</button>
+  </body>
 </html>
