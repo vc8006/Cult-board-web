@@ -83,11 +83,11 @@ class EventDetailView(DetailView):
 
 class EventCreateView(CreateView):
     model = Events
-    fields = ['club','title','content','expired_date']
+    fields = ['club','title','content','image','expired_date']
     
 class EventUpdateView(UpdateView):
     model = Events
-    fields = ['club','title','content','expired_date']
+    fields = ['club','title','content','image','expired_date']
 
 class EventDeleteView(DeleteView):
     model = Events

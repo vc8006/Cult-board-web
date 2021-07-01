@@ -15,6 +15,7 @@ class Events(models.Model):
     title = models.CharField(default = None,max_length=(100))
     content = models.TextField()
     expired_date = models.DateTimeField(default=timezone.now)
+    image = models.ImageField(default = 'default.jpg',upload_to="media/events")
 
     def get_absolute_url(self): # new
         return reverse('event-detail', kwargs={'pk': self.pk})
