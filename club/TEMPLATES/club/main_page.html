@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Main Page</title>
+        <link rel="stylesheet" href="{% static 'club/main.css'%}">
+    </head>
+    <body>
+        <h1>Welcome to Cultural Board</h1>
+    </body>
+    <h2>Upcoming Events</h2>
+    {% for event in events %}
+        <h3>{{ event.title }}</h3>
+        <p>{{ event.content }}</p>
+        <p>Deadline - {{event.expired_date }}</p>
+    {% endfor %}
+
+</html>

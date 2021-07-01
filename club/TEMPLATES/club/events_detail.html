@@ -1,0 +1,9 @@
+{% extends "club/base.html" %}
+{% block content %}
+    <h2>{{ object.title }}</h2>
+    <p>{{ object.content }}</p>
+    <br>
+    <a href="{% url 'event-update' pk=object.pk %}"><button type="button" name="button">Update</button></a>
+    <a href="{% url 'event-delete' pk=object.pk %}"><button type="button" name="button">Delete</button></a>
+
+{% endblock %}

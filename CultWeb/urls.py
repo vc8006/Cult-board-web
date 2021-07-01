@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('stud/gymkhana/CulturalBoard/admin/', admin.site.urls),
-    path('stud/gymkhana/CulturalBoard/Club/',include('club.urls')),
+    path('stud/gymkhana/CulturalBoard/',include('club.urls')),
 ]
 
 if settings.DEBUG :

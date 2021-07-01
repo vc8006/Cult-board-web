@@ -1,0 +1,8 @@
+{% extends "club/base.html" %}
+{% block content %}
+    <h2>Welcome note</h2>
+    <p>{{ object.content }}</p>
+    <br>
+    <a href="{% url 'welcomenote-update' pk=object.pk %}"><button type="button" name="button">Update</button></a>
+
+{% endblock %}

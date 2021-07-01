@@ -1,4 +1,7 @@
 {% extends "club/base.html" %}
 {% block content %}
-<h1>Event Page</h1>
+    {% for event in events %}
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.content }}</p>
+    {% endfor %}
 {% endblock %}

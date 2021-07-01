@@ -1,6 +1,6 @@
 {% extends "club/base.html" %}
 {% block content %}
-{% for photo in photos %}
-    <img src="{{ photo.image.url }}" alt="No Image">
-{% endfor %}
+    {% for photo in photos %}
+        <img src="{{ photo.image.url }}" alt="No Image">
+    {% endfor %}
 {% endblock %}

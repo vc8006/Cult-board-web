@@ -2,12 +2,28 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from PIL import Image
+
 # Create your models here.
 class Club(models.Model):
     name = models.CharField(default=None,max_length= 40)
 
     def __str__(self):
         return self.name
+
+class Events(models.Model):
+    club = models.ForeignKey(Club,on_delete=models.CASCADE)
+    title = models.CharField(default = None,max_length=(100))
+    content = models.TextField()
+    expired_date = models.DateTimeField(default=timezone.now)
+
+    def get_absolute_url(self): # new
+        return reverse('event-detail', kwargs={'pk': self.pk})
+
+class WelcomeNote(models.Model):
+    content = models.TextField()
+
+    def get_absolute_url(self): # new
+        return reverse('welcomenote-detail', kwargs={'pk': self.pk})
 
 class Member(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE)
@@ -64,7 +80,7 @@ class Achieve(models.Model):
     title = models.CharField(default = None, max_length=(200))
     image = models.ImageField(default='default.jpg',upload_to='media/achieve')
     content = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

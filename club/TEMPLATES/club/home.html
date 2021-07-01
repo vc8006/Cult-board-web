@@ -1,4 +1,7 @@
 {% extends "club/base.html" %}
 {% block content %}
-<h1>This is the home page</h1>
+    {% for note in welcome_note %}
+        <h2>Welcome</h2>
+        <p>{{ note.content }}</p>
+    {% endfor %}
 {% endblock %}

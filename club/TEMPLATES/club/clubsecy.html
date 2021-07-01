@@ -1,30 +1,47 @@
 {% extends "club/base.html" %}
 {% block content %}
 <nav>
-    <a href="{% url "member-create"%}">Add Member</a>
-    <a href="{% url "achieve-create"%}">Add Achievement</a>
-    <a href="{% url "photo-create"%}">Add Photo</a>
-    <a href="{% url "blog-create"%}">Add Blog</a>
+    <a href="{% url 'member-create' %}">Add Member</a>
+    <a href="{% url 'achieve-create' %}">Add Achievement</a>
+    <a href="{% url 'photo-create' %}">Add Photo</a>
+    <a href="{% url 'blog-create' %}">Add Blog</a>
+    <a href="{% url 'event-create' %}">Add Event</a>
 </nav>
+
 <h1 style="color:red;" >Achievements</h1>
 {% for achieve in achievements %}
     <div class="container">
-        <a href="{% url "achieve-detail" achieve.id %}">{{ achieve.title }}</a>
+        <a href="{% url 'achieve-detail' pk=achieve.pk %}">{{ achieve.title }}</a>
     </div>
 {% endfor %}
-<h1 style="color:red;" >TEAM DETAILS</h1>
+
+<h1 style="color:red;">Welcome Note</h1>
+{% for note in welcome_note %}
+    <!-- <p>{{ note.content }}</p>  -->
+    <a href="{% url 'welcomenote-detail' note.id %}">Edit Welcome Note</a>  
+{% endfor %}
+
+<h1 style="color:red;" >Team Details</h1>
 {% for member in members %}
     <h2>{{ member.name }}</h2>
-    <a href="{% url "member-detail" member.id %}">{{ member.position }}</a>
+    <a href="{% url 'member-detail' pk=member.pk %}">{{ member.position }}</a>
 {% endfor %}
-<h1 style="color:red;" >POSTS</h1>
+
+<h1 style="color:red;" >Events</h1>
+{% for event in events %}
+    <h2><a href="{% url 'event-detail' pk=event.pk %}">{{ event.title }}</a></h2>
+{% endfor %}
+
+<h1 style="color:red;" >Posts</h1>
 {% for post in posts %}
 <div class="container">
-    <a href="{% url "blog-detail" post.id %}">{{ post.title }}</a>
+    <a href="{% url 'blog-detail' pk=post.pk %}">{{ post.title }}</a>
 </div>
 {% endfor %}
+
 <h1 style="color:red;" >Club Gallery</h1>
 {% for photo in photos %}
-    <a href="{% url "photo-detail" photo.id %}"><img src="{{ photo.image.url }}" alt="No Image"></a>
+    <a href="{% url 'photo-detail' pk=photo.pk %}"><img src="{{ photo.image.url }}" alt="No Image"></a>
 {% endfor %}
+
 {% endblock %}

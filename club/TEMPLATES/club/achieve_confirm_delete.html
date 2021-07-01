@@ -3,8 +3,8 @@
     <form method="POST">
         {% csrf_token %}
         <legend>Delete Achievement</legend>
-        <h2>Are you sure you want to delete({{ object.title }})?</h2>
+        <h2>Are you sure you want to delete {{ object.title }} ?</h2>
         <button type="submit" name="button">Delete</button>
-        <a href="{% url "achieve-detail" object.id %}">Cancel</a>
+        <a href="{% url 'achieve-detail' object.id %}">Cancel</a>
     </form>
 {% endblock %}
