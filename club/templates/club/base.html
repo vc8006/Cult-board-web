@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Club Page</title>
+        <link rel="stylesheet" href="{% static 'club/main.css'%}">
+    </head>
+    <body>
+        <nav>
+            <a href="{% url "club-home"%}">Home</a>
+            <a href="{% url "club-events"%}">Events</a>
+            <a href="{% url "club-team"%}">Team</a>
+            <a href="{% url "club-achieve"%}">Achievements</a>
+            <a href="{% url "club-gallery"%}">Gallery</a>
+            <a href="{% url "club-blogs"%}">Blog</a>
+        </nav>
+        {% block content %}{% endblock %}
+    </body>
+</html>

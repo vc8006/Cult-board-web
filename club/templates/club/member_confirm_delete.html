@@ -1,0 +1,10 @@
+{% extends "club/base.html" %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <legend>Delete Team Member</legend>
+        <h2>Are you sure you want to delete({{ object.title }})?</h2>
+        <button type="submit" name="button">Delete</button>
+        <a href="{% url "member-detail" object.id %}">Cancel</a>
+    </form>
+{% endblock %}

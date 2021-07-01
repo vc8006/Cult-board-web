@@ -1,0 +1,9 @@
+{% extends "club/base.html" %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <legend>Team Member</legend>
+        {{ form }}
+        <button type="submit" name="button">Create</button>
+    </form>
+{% endblock %}
