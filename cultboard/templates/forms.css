@@ -1,0 +1,28 @@
+label {
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+    padding-top: 20px;
+    font-weight: bold;
+    width: 150px;
+    line-height: 26px;
+    margin-bottom: 10px;
+  }
+  
+input[type=text] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  input[type=text]:focus {
+    background-color: lightblue;
+  }
+
+input {
+    display: flex;
+    height: 20px;
+    flex: 0 0 200px;
+    margin-left: 20px;
+  }
