@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h3>{{ blogpost.title }}</h3>
+    <p>{{ blogpost.author }} <br> {{ blogpost.created_on }}</p>
+    <small class="text-muted">Last updated: {{ blogpost.updated_on }}</small><br>
+    <p>{{ blogpost.content }}</p>
+</div>
+<small><a href="{% url 'update_post' blogpost.slug %}">edit</a></small>  
+<small><a href="{% url 'delete_post' blogpost.slug %}">delete</a></small>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Lumiere Blogs{% endblock title %}
+{% block content %}
+
+<a href="{% url 'add_post' %}" class="btn btn-secondary">
+  Add Post
+</a>
+
+<div>
+
+    {% for post in blogpost_list %}
+    
+    <div>
+      <a href="{% url 'blogpost_detail' post.slug %}"><h5>{{ post.title }}</h5></a>
+      <p class="text-muted">{{ post.author }} | {{ post.created_on }}</p>
+      <p>{{ post.content|slice:":150" }}</p>
+      <small class="text-muted">Last updated: {{ post.updated_on }}</small>
+      <small><a href="{% url 'update_post' post.slug %}">edit</a></small>
+      <small><a href="{% url 'delete_post' post.slug %}">delete</a></small>
+    </div><br><br>
+    
+    {% endfor %}
+ </div>
+
+{% endblock content %}
