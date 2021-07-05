@@ -27,9 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # 'microsoft_auth',
+    # 'microsoft_authentication',
     'lumiere.apps.LumiereConfig',
-    'authentication',
+    # 'authentication',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.microsoft',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +124,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 # AUTHENTICATION_BACKENDS = [
 #     'microsoft_auth.backends.MicrosoftAuthenticationBackend',
 #     'django.contrib.auth.backends.ModelBackend' # if you also want to use Django's authentication
@@ -137,4 +149,31 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # # include Microsoft Accounts, Office 365 Enterpirse and Azure AD accounts
 # MICROSOFT_AUTH_LOGIN_TYPE = 'ma'
 
+# MICROSOFT = {
+#     "app_id": "db37acd0-8776-44d1-adc8-b257495f63b8",
+#     "app_secret": "U0.K6H8CoGXo-xKs-c_R69jf~j93A9dI2v",
+#     "redirect": "http://localhost:8000/microsoft_authentication/callback",
+#     "scopes": ["user.read"],
+#     "authority": "https://login.microsoftonline.com/common",  # or using tenant "https://login.microsoftonline.com/{tenant}",
+#     "valid_email_domains": ["<list_of_valid_domains>"],
+#     "logout_uri": "http://localhost:8000/admin/logout"
+# }
+
+# LOGIN_URL = "/microsoft_authentication/login"
+LOGIN_REDIRECT_URL = "/"  # optional and can be changed to any other url
+
 SITE_ID = 1
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'microsoft': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': 'db37acd0-8776-44d1-adc8-b257495f63b8',
+            'secret': 'U0.K6H8CoGXo-xKs-c_R69jf~j93A9dI2v',
+            'key': ''
+        }
+    }
+}

@@ -2,9 +2,11 @@
 {% block title %}Lumiere Blogs{% endblock title %}
 {% block content %}
 
+{% if user.is_authenticated %}
 <a href="{% url 'add_post' %}" class="btn btn-secondary">
   Add Post
 </a>
+{% endif %}
 
 <div>
 
@@ -15,8 +17,10 @@
       <p class="text-muted">{{ post.author }} | {{ post.created_on }}</p>
       <p>{{ post.content|slice:":150" }}</p>
       <small class="text-muted">Last updated: {{ post.updated_on }}</small>
+      {% if user.is_authenticated %}
       <small><a href="{% url 'update_post' post.slug %}">edit</a></small>
       <small><a href="{% url 'delete_post' post.slug %}">delete</a></small>
+      {% endif %}
     </div><br><br>
     
     {% endfor %}

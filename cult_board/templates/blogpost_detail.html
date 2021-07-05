@@ -8,7 +8,10 @@
     <small class="text-muted">Last updated: {{ blogpost.updated_on }}</small><br>
     <p>{{ blogpost.content }}</p>
 </div>
+
+{% if user.is_authenticated %}
 <small><a href="{% url 'update_post' blogpost.slug %}">edit</a></small>  
 <small><a href="{% url 'delete_post' blogpost.slug %}">delete</a></small>
+{% endif %}
 
 {% endblock %}

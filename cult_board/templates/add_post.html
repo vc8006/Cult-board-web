@@ -4,10 +4,14 @@
 
 <h1>Add New Blog</h1>
 <br/><br/>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-secondary">Post</button>
-</form>
+<div class="col-md-6">
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Post</button>
+        </form>
+    </div>
+</div>
 
 {% endblock content %}

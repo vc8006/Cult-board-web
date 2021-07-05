@@ -19,6 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('lumiere.urls')),
-    path('authentication/', include('authentication.urls', namespace='authentication')),
-    path('microsoft/', include('microsoft_auth.urls', namespace='microsoft')),
+    path('accounts/', include('allauth.urls')),
+    # path('authentication/', include('authentication.urls', namespace='authentication')),
+    # path('microsoft_authentication/', include('microsoft_authentication.urls'))
 ]
