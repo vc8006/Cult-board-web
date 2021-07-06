@@ -14,7 +14,7 @@ class Detail(models.Model):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=100)  #chairman or gensec
     info = models.CharField(max_length=100)
-    image = models.ImageField(default = 'placeholder,png',upload_to="images")
+    image = models.ImageField(default = 'placeholder.png',upload_to="images")
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     email = models.CharField(max_length=100)
 
