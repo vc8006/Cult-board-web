@@ -32,16 +32,16 @@
     <h2><a href="{% url 'event-detail' pk=event.pk %}">{{ event.title }}</a></h2>
 {% endfor %}
 
+<h1 style="color:red;" >Club Gallery</h1>
+{% for photo in photos %}
+    <a href="{% url 'photo-detail' pk=photo.pk %}"><img src="{{ photo.image.url }}" alt="No Image"></a> <br>
+{% endfor %}
+
 <h1 style="color:red;" >Posts</h1>
 {% for post in posts %}
 <div class="container">
     <a href="{% url 'blog-detail' pk=post.pk %}">{{ post.title }}</a>
 </div>
-{% endfor %}
-
-<h1 style="color:red;" >Club Gallery</h1>
-{% for photo in photos %}
-    <a href="{% url 'photo-detail' pk=photo.pk %}"><img src="{{ photo.image.url }}" alt="No Image"></a>
 {% endfor %}
 
 {% endblock %}

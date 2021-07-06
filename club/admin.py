@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Post,Photo,Member,Achieve,Club,Events,WelcomeNote
+from .models import BlogPost,Photo,Member,Achieve,Club,Events,WelcomeNote
 # Register your models here.
 
 admin.site.register(Club)
-admin.site.register(Post)
+admin.site.register(BlogPost)
 admin.site.register(Photo)
 admin.site.register(Member)
 admin.site.register(Achieve)

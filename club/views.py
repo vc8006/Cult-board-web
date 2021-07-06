@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse 
-from .models import Post,Photo,Member,Achieve,Club, WelcomeNote,Events
+from .models import BlogPost,Photo,Member,Achieve,Club, WelcomeNote,Events
 from django.views.generic import DetailView,CreateView,UpdateView,DeleteView
+import datetime
 from datetime import date
 from datetime import time
 from datetime import datetime
@@ -15,9 +16,11 @@ def home(request):
 
 def main_page(request):
     days = 7*3
-    start_date = date.today()
+    # start_date = date.today()
+    start_date = datetime.now()
     end_date = start_date + timedelta(days=days)
     events = Events.objects.filter(expired_date__range=[start_date, end_date])
+    # events=Events.objects.all()
     return render(request,'club/main_page.html',{'events':events})
 
 def events(request):
@@ -32,7 +35,7 @@ def gallery(request):
 
 def blog(request):
     content= {
-        'posts': Post.objects.all(),
+        'posts': BlogPost.objects.filter(status=1).order_by('-created_on'),
     }
     return render(request,'club/blog.html',content)
 
@@ -52,7 +55,7 @@ def team(request):
 def clubsecy(request):
     info = {
         'photos':Photo.objects.all(),
-        'posts': Post.objects.all(),
+        'posts': BlogPost.objects.filter(status=1).order_by('-created_on'),
         'achievements' : Achieve.objects.all(),
         'members': Member.objects.all(),
         'events':Events.objects.all(),
@@ -63,18 +66,18 @@ def clubsecy(request):
 
 # blog views
 class BlogDetailView(DetailView):
-    model = Post
+    model = BlogPost
 
 class BlogCreateView(CreateView):
-    model = Post
-    fields = ['club','title','content','author']
+    model = BlogPost
+    fields = ['club','title','author','content','status']
 
 class BlogUpdateView(UpdateView):
-    model = Post
-    fields = ['club','title','content','author']
+    model = BlogPost
+    fields = ['club','title','author','content','status']
 
 class BlogDeleteView(DeleteView):
-    model = Post
+    model = BlogPost
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
 
@@ -83,11 +86,11 @@ class EventDetailView(DetailView):
 
 class EventCreateView(CreateView):
     model = Events
-    fields = ['club','title','content','image','expired_date']
+    fields = ['club','title','content','expired_date']
     
 class EventUpdateView(UpdateView):
     model = Events
-    fields = ['club','title','content','image','expired_date']
+    fields = ['club','title','content','expired_date']
 
 class EventDeleteView(DeleteView):
     model = Events
@@ -109,7 +112,6 @@ class MemberDeleteView(DeleteView):
     model = Member
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-
 class AchieveDetailView(DetailView):
     model = Achieve
 
@@ -124,7 +126,6 @@ class AchieveUpdateView(UpdateView):
 class AchieveDeleteView(DeleteView):
     model = Achieve
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
-
 
 class PhotoDetailView(DetailView):
     model = Photo

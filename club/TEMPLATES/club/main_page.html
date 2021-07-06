@@ -13,7 +13,7 @@
     {% for event in events %}
         <h3>{{ event.title }}</h3>
         <p>{{ event.content }}</p>
-        <p>Event Ends on - {{event.expired_date|date:"F d,Y"}}</p>
+        <p>Deadline - {{event.expired_date }}</p>
     {% endfor %}
 
 </html>

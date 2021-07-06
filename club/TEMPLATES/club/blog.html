@@ -1,10 +1,13 @@
 {% extends "club/base.html" %}
+
 {% block content %}
-    {% for post in posts %}
-        <div class="container">
-            <a href="{% url 'blog-detail' post.id %}">{{ post.title }}</a>
-            <p>{{ post.content }}</p>
-            <p>posted on {{post.date|date:"F,d,Y"}}</p>
-        </div>
+    <a href="{% url 'blog-create' %}" class="btn btn-secondary">Add Blog</a>
+    {% for post in posts %}     
+        <div>
+            <a href="{% url 'blog-detail' post.id %}"><h2>{{ post.title }}</h2></a>
+            <p class="text-muted">{{ post.author }} | {{ post.created_on }}</p>
+            <p>{{ post.content|slice:":150" }}</p>
+            <small class="text-muted">Last updated: {{ post.updated_on }}</small>
+        </div><br><br>
     {% endfor %}
 {% endblock %}

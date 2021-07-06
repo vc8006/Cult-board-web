@@ -2,7 +2,7 @@
 {% block content %}
     <form method="POST">
         {% csrf_token %}
-        <legend>Delete Post</legend>
+        <legend><h2>Delete Post</h2></legend>
         <h2>Are you sure you want to delete {{ object.title }}?</h2>
         <button type="submit" name="button">Delete</button>
         <a href="{% url 'blog-detail' object.id %}">Cancel</a>

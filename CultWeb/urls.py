@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('stud/gymkhana/CulturalBoard/admin/', admin.site.urls),
     path('stud/gymkhana/CulturalBoard/',include('club.urls')),
+    # path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG :

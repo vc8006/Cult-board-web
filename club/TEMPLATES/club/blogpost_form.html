@@ -2,7 +2,7 @@
 {% block content %}
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <legend>Blog Post</legend>
+        <legend>Add Blog</legend>
         {{form.as_p}}
         <button type="submit" name="button">Post</button>
     </form>
