@@ -2,6 +2,8 @@
 {% block title %}Update Blog Post{% endblock %}
 {% block content %}
 
+{% if user.is_authenticated %}
+{% if post.author.id == user.id %}
 <h1>Update Blog</h1>
 <br/><br/>
 <div class="col-md-6">
@@ -13,5 +15,9 @@
         </form>
     </div>
 </div>
+{% else %}
+<p>You are not allowed here...</p>
+{% endif %}
+{% endif %}
 
 {% endblock %}

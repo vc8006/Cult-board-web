@@ -14,12 +14,14 @@
     
     <div>
       <a href="{% url 'blogpost_detail' post.slug %}"><h5>{{ post.title }}</h5></a>
-      <p class="text-muted">{{ post.author }} | {{ post.created_on }}</p>
+      <p class="text-muted">{{ post.author.first_name }} | {{ post.created_on }}</p>
       <p>{{ post.content|slice:":150" }}</p>
       <small class="text-muted">Last updated: {{ post.updated_on }}</small>
       {% if user.is_authenticated %}
+      {% if post.author.id == user.id %}
       <small><a href="{% url 'update_post' post.slug %}">edit</a></small>
       <small><a href="{% url 'delete_post' post.slug %}">delete</a></small>
+      {% endif %}
       {% endif %}
     </div><br><br>
     

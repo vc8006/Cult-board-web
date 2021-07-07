@@ -4,14 +4,16 @@
 
 <div>
     <h3>{{ blogpost.title }}</h3>
-    <p>{{ blogpost.author }} <br> {{ blogpost.created_on }}</p>
+    <p>{{ blogpost.author.first_name }} <br> {{ blogpost.created_on }}</p>
     <small class="text-muted">Last updated: {{ blogpost.updated_on }}</small><br>
     <p>{{ blogpost.content }}</p>
 </div>
 
 {% if user.is_authenticated %}
+{% if blogpost.author.id == user.id %}
 <small><a href="{% url 'update_post' blogpost.slug %}">edit</a></small>  
 <small><a href="{% url 'delete_post' blogpost.slug %}">delete</a></small>
+{% endif %}
 {% endif %}
 
 {% endblock %}

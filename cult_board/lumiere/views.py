@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import BlogForm
 
 
-# Create your views here.
 # @login_required
 def home(request):
     return render(request, "home.html")
