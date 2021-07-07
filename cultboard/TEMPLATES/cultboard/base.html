@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+      <nav>
+          <div class="w3-bar w3-black">
+              <a href="{% url "homepage" %}" class="w3-bar-item w3-button">Home</a>
+              <a href="{% url "clubs" %}" class="w3-bar-item w3-button">Club</a>
+              <a href="{% url "majorevents" %}" class="w3-bar-item w3-button">Major Events</a>
+              <a href="{% url "upcomingevents" %}" class="w3-bar-item w3-button">Upcoming Events</a>
+              <a href="{% url "services" %}" class="w3-bar-item w3-button">Services</a>
+              <a href="{% url "aboutUs" %}" class="w3-bar-item w3-button">About Us</a>
+           </div>
+     </nav>
+     {% block content %}
+     {% endblock %}
+  </body>
+</html>

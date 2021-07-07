@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'club.apps.ClubConfig',
+    'cultboard.apps.CultboardConfig'
 ]
 
 MIDDLEWARE = [

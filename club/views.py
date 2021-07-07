@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.urls import reverse 
-from .models import BlogPost,Photo,Member,Achieve,Club, WelcomeNote,Events
+from django.urls import reverse
+from .models import BlogPost,Photo,Achieve,Club, WelcomeNote,Events
+from cultboard.models import TeamMember
 from django.views.generic import DetailView,CreateView,UpdateView,DeleteView
 import datetime
 from datetime import date
@@ -48,7 +49,7 @@ def achieve(request):
 
 def team(request):
     context = {
-        'members': Member.objects.all(),
+        'members': TeamMember.objects.all(),
     }
     return render(request,'club/team.html',context)
 
@@ -57,7 +58,7 @@ def clubsecy(request):
         'photos':Photo.objects.all(),
         'posts': BlogPost.objects.filter(status=1).order_by('-created_on'),
         'achievements' : Achieve.objects.all(),
-        'members': Member.objects.all(),
+        'members': TeamMember.objects.all(),
         'events':Events.objects.all(),
         'welcome_note':WelcomeNote.objects.all()
     }
@@ -87,7 +88,7 @@ class EventDetailView(DetailView):
 class EventCreateView(CreateView):
     model = Events
     fields = ['club','title','content','expired_date']
-    
+
 class EventUpdateView(UpdateView):
     model = Events
     fields = ['club','title','content','expired_date']
@@ -98,18 +99,18 @@ class EventDeleteView(DeleteView):
 
 
 class MemberDetailView(DetailView):
-    model = Member
+    model = TeamMember
 
 class MemberCreateView(CreateView):
-    model = Member
+    model = TeamMember
     fields = ['club','name','image','position','phone_number','fb_link','insta_link','linkedin_link']
 
 class MemberUpdateView(UpdateView):
-    model = Member
+    model = TeamMember
     fields = ['club','name','image','position','phone_number','fb_link','insta_link','linkedin_link']
 
 class MemberDeleteView(DeleteView):
-    model = Member
+    model = TeamMember
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
 class AchieveDetailView(DetailView):
@@ -149,4 +150,3 @@ class WelcomeUpdateView(UpdateView):
 
 class WelcomeDetailView(DetailView):
     model = WelcomeNote
-    

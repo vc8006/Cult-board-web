@@ -3,13 +3,15 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
+from cultboard.models import Club
+from cultboard.models import TeamMember
 
 # Create your models here.
-class Club(models.Model):
-    name = models.CharField(default=None,max_length= 40)
-
-    def __str__(self):
-        return self.name
+# class Club(models.Model):
+#     name = models.CharField(default=None,max_length= 40)
+#
+#     def __str__(self):
+#         return self.name
 
 class Events(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE)
@@ -20,27 +22,30 @@ class Events(models.Model):
     def get_absolute_url(self): # new
         return reverse('event-detail', kwargs={'pk': self.pk})
 
+    def __str__(self):
+        return self.name
+
 class WelcomeNote(models.Model):
     content = models.TextField()
 
     def get_absolute_url(self): # new
         return reverse('welcomenote-detail', kwargs={'pk': self.pk})
 
-class Member(models.Model):
-    club = models.ForeignKey(Club,on_delete=models.CASCADE)
-    name = models.CharField(default = None,max_length=(100))
-    image = models.ImageField(default = 'default.jpg',upload_to="media/team")
-    position = models.CharField(default= None,max_length=(100))
-    phone_number = models.IntegerField(blank=True)
-    fb_link = models.URLField(max_length =(300))
-    insta_link = models.URLField(max_length =(300))
-    linkedin_link = models.URLField(max_length =(300))
-
-    def __str__(self):
-        return self.position
-
-    def get_absolute_url(self):
-        return reverse('member-detail',kwargs={'pk': self.pk})
+# class Member(models.Model):
+#     club = models.ForeignKey(Club,on_delete=models.CASCADE)
+#     name = models.CharField(default = None,max_length=(100))
+#     image = models.ImageField(default = 'default.jpg',upload_to="media/team")
+#     position = models.CharField(default= None,max_length=(100))
+#     phone_number = models.IntegerField(blank=True)
+#     fb_link = models.URLField(max_length =(300))
+#     insta_link = models.URLField(max_length =(300))
+#     linkedin_link = models.URLField(max_length =(300))
+#
+#     def __str__(self):
+#         return self.position
+#
+#     def get_absolute_url(self):
+#         return reverse('member-detail',kwargs={'pk': self.pk})
 
 STATUS = {
     (0,"Draft"),

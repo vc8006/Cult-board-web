@@ -1,0 +1,24 @@
+{% extends "cultboard/base.html" %}
+{% block title %}
+    <title>Home Page</title>
+{% endblock %}
+{% block content %}
+    <h1>Form:</h1>
+    <div class="choice_form">
+      <select name="main_choice" id="choice" onchange="loadDoc()">
+        <option value="1">Add a Team Member</option>
+        <option value="2">Add a Gallery Event</option>
+        <option value="3">Add a Major Event</option>
+        <option value="4">Add an Upcoming Event</option>
+        <option value="5">Add a club</option>
+      </select>
+    </div>
+    <div id="team_form" hidden="true">
+      <form action="" method="post">
+        {% csrf_token %} {{ form1 }}
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+    <script src="./home.js"></script>
+
+{% endblock %}
