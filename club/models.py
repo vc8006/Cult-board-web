@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
+
 from cultboard.models import Club
 from cultboard.models import TeamMember
 
@@ -23,7 +24,7 @@ class Events(models.Model):
         return reverse('event-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class WelcomeNote(models.Model):
     content = models.TextField()

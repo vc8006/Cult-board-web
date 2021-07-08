@@ -1,6 +1,12 @@
 {% extends "cultboard/base.html" %}
 {% block title %}
-    <title>UpComing Events</title>
+    <title>Upcoming Events</title>
 {% endblock %}
 {% block content %}
+    <h2>Upcoming Events</h2>
+    {% for event in events %}
+    <h3>{{ event.title }}</h3>
+    <p>{{ event.content }}</p>
+    <p>Deadline - {{event.expired_date }}</p>
+    {% endfor %}
 {% endblock %}

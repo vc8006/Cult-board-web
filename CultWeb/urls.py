@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from club import views
 
 urlpatterns = [
     path('stud/gymkhana/CulturalBoard/admin/', admin.site.urls),

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Event Details</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+      <nav>
+          <div class="w3-bar w3-black">
+              <a href="{% url 'major_event-create' %}" class="w3-bar-item w3-button">Add Major Events</a>
+              <a href="{% url 'upcoming_event-create' %}" class="w3-bar-item w3-button">Add Upcoming Events</a>
+              <a href="{% url 'member-create' %}" class="w3-bar-item w3-button">Add Team Member</a>
+              <a href="{% url 'gensec-create' %}" class="w3-bar-item w3-button">Add Gensec Details</a>
+           </div>
+     </nav>
+    {% block content %}
+     <h2>{{ object.name }}</h2>
+     <img src="{{ object.logo.url }}" alt="No Image">
+     <p>{{ object.description }}</p>
+     <br>
+     <a href="{% url 'upcoming_event-update' pk=object.pk %}"><button type="button" name="button">Update</button></a>
+     <a href="{% url 'upcoming_event-delete' pk=object.pk %}"><button type="button" name="button">Delete</button></a>
+ 
+    {% endblock %}
+
+        
+  </body>
+</html>
+
+
+
+

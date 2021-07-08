@@ -10,12 +10,21 @@
   <body>
       <nav>
           <div class="w3-bar w3-black">
-              <a href="{% url "homepage" %}" class="w3-bar-item w3-button">Home</a>
-              <a href="{% url "clubs" %}" class="w3-bar-item w3-button">Club</a>
-              <a href="{% url "majorevents" %}" class="w3-bar-item w3-button">Major Events</a>
-              <a href="{% url "upcomingevents" %}" class="w3-bar-item w3-button">Upcoming Events</a>
-              <a href="{% url "services" %}" class="w3-bar-item w3-button">Services</a>
-              <a href="{% url "aboutUs" %}" class="w3-bar-item w3-button">About Us</a>
+              <a href="{% url 'homepage' %}" class="w3-bar-item w3-button">Home</a>
+              <!-- <a href="" class="w3-bar-item w3-button">
+                <label for="clubs">Clubs</label>
+                <select name="clubs" id="clubs">
+                  <option value="1"> <a href="#">Expressions</a></option>
+                  <option value="2"><a href="#">Cadence</a></option>
+                  <option value="3"><a href="#">Octaves</a></option>
+                  <option value="4"><a href="#">Montage</a></option>
+                </select>
+              </a> -->
+              <a href="{% url 'clubs' %}" class="w3-bar-item w3-button" >Clubs</a>
+              <a href="{% url 'majorevents' %}" class="w3-bar-item w3-button">Major Events</a>
+              <a href="{% url 'upcomingevents' %}" class="w3-bar-item w3-button">Upcoming Events</a>
+              <a href="{% url 'services' %}" class="w3-bar-item w3-button">Services</a>
+              <a href="{% url 'aboutUs' %}" class="w3-bar-item w3-button">About Us</a>
            </div>
      </nav>
      {% block content %}

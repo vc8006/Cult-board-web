@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Team Member Details</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+      <nav>
+          <div class="w3-bar w3-black">
+              <a href="{% url 'major_event-create' %}" class="w3-bar-item w3-button">Add Major Events</a>
+              <a href="{% url 'upcoming_event-create' %}" class="w3-bar-item w3-button">Add Upcoming Events</a>
+              <a href="{% url 'member-create' %}" class="w3-bar-item w3-button">Add Team Member</a>
+              <a href="{% url 'gensec-create' %}" class="w3-bar-item w3-button">Add Gensec Details</a>
+           </div>
+     </nav>
+    {% block content %}
+    <br>
+     <img src="{{ object.image.url }}" alt="">
+     <h2>{{ object.name }}</h2>
+     <p>{{ object.position }}</p>
+     <p>{{ object.phone_number}}</p>
+     <a href="{{ object.fb_link }}">Fb</a>
+     <a href="{{ object.insta_link }}">Insta</a>
+     <a href="{{ object.linkedin_link }}">LinkedIn</a>
+     <br>
+     <a href="{% url 'member-update' object.id %}"><button type="button" name="button">Update</button></a>
+     <a href="{% url 'member-delete' object.id %}"><button type="button" name="button">Delete</button></a>
+ 
+    {% endblock %}
+ 
+        
+  </body>
+</html>
+
+
+
+
+

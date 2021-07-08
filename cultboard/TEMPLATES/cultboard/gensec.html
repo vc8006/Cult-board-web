@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Admin Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+      <nav>
+          <div class="w3-bar w3-black">
+              <a href="{% url 'major_event-create' %}" class="w3-bar-item w3-button">Add Major Events</a>
+              <a href="{% url 'upcoming_event-create' %}" class="w3-bar-item w3-button">Add Upcoming Events</a>
+              <a href="{% url 'member-create' %}" class="w3-bar-item w3-button">Add Team Member</a>
+              <a href="{% url 'gensec-create' %}" class="w3-bar-item w3-button">Add Gensec Details</a>
+           </div>
+     </nav>
+     {% block content %}
+        <h2 style="color:red;" >Major Events</h2>
+        {% for event in major_events %}
+            <div class="container">
+                <a href="{% url 'major_event-detail' pk=event.pk %}">{{ event.name }}</a>
+            </div>
+        {% endfor %}
+        
+        <h2 style="color:red;" >Upcoming Events</h2>
+        {% for event in upcoming_events %}
+            <h3><a href="{% url 'upcoming_event-detail' pk=event.pk %}">{{ event.name }}</a></h3>
+        {% endfor %}
+    
+        <h2 style="color:red;">Notes</h2>
+        {% for note in notes %}
+            <h3><a href="{% url 'note-detail' note.id %}">{{ note.title }}</a> </h3> 
+        {% endfor %}
+    
+        <h2 style="color:red;" >Team Details</h2>
+        {% for member in members %}
+            <u><h3>{{ member.name }}</h3></u>
+            <a href="{% url 'member-detail' pk=member.pk %}">{{ member.position }}</a>
+        {% endfor %}
+    
+        <h2 style="color:red;" >Gensec Details</h2>
+        {% for member in gensec %}
+            <u><h3>{{ member.name }}</h3></u>
+            <a href="{% url 'gensec-detail' pk=member.pk %}">{{ member.position }}</a>
+        {% endfor %}
+     {% endblock %}
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+    <!-- <h1>Form:</h1>
+    <div class="choice_form">
+      <select name="main_choice" id="choice" onchange="loadDoc()">
+        <option value="1">Add a Team Member</option>
+        <option value="2">Add a Gallery Event</option>
+        <option value="3">Add a Major Event</option>
+        <option value="4">Add an Upcoming Event</option>
+        <option value="5">Add a club</option>
+      </select>
+    </div>
+    <div id="team_form" hidden="true">
+      <form action="" method="post">
+        {% csrf_token %} {{ form1 }}
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+    <script src="./home.js"></script> -->

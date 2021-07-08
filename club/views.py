@@ -25,7 +25,7 @@ def main_page(request):
     return render(request,'club/main_page.html',{'events':events})
 
 def events(request):
-    events=Events.objects.all()
+    events= Events.objects.all()
     return render(request,'club/events.html',{'events':events})
 
 def gallery(request):
