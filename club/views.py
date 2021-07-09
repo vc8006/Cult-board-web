@@ -4,16 +4,14 @@ from .models import BlogPost,Photo,Achieve,Club, WelcomeNote,Events
 from cultboard.models import TeamMember
 from django.views.generic import DetailView,CreateView,UpdateView,DeleteView
 import datetime
-from datetime import date
-from datetime import time
-from datetime import datetime
-from datetime import timedelta
-
+from datetime import date,time,datetime,timedelta
 
 #  clubs views
 def home(request):
-    welcome_note = WelcomeNote.objects.all()
-    return render(request,'club/home.html',{'welcome_note': welcome_note})
+    Notes = {
+        'welcomenotes' : WelcomeNote.objects.all(),
+    }
+    return render(request,'club/home.html',Notes)
 
 def main_page(request):
     days = 7*3
@@ -81,7 +79,7 @@ class BlogDeleteView(DeleteView):
     model = BlogPost
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-
+#Event Views
 class EventDetailView(DetailView):
     model = Events
 
@@ -97,7 +95,7 @@ class EventDeleteView(DeleteView):
     model = Events
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-
+#Team Member Views
 class MemberDetailView(DetailView):
     model = TeamMember
 
@@ -113,6 +111,7 @@ class MemberDeleteView(DeleteView):
     model = TeamMember
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
+#Achievement Views
 class AchieveDetailView(DetailView):
     model = Achieve
 
@@ -128,6 +127,7 @@ class AchieveDeleteView(DeleteView):
     model = Achieve
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
+#Gallery Views
 class PhotoDetailView(DetailView):
     model = Photo
 
@@ -143,7 +143,7 @@ class PhotoDeleteView(DeleteView):
     model = Photo
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-
+#Welcome Note Views
 class WelcomeUpdateView(UpdateView):
     model = WelcomeNote
     fields = ['content']

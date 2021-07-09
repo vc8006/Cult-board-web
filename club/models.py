@@ -17,6 +17,7 @@ from cultboard.models import TeamMember
 class Events(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE)
     title = models.CharField(default = None,max_length=(100))
+    image = models.ImageField(default = 'default.jpg',upload_to="media/images")
     content = models.TextField()
     expired_date = models.DateTimeField(default=timezone.now)
 
@@ -27,6 +28,7 @@ class Events(models.Model):
         return self.title
 
 class WelcomeNote(models.Model):
+    club = models.ForeignKey(Club,on_delete= models.CASCADE)
     content = models.TextField()
 
     def get_absolute_url(self): # new

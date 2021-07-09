@@ -2,13 +2,11 @@ from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.http import HttpResponseRedirect
 from .models import Club, Detail, UpcomingEvent,MajorEvent,TeamMember,Note
-from django.views.generic import DetailView,CreateView,UpdateView,DeleteView
+from django.views.generic import DetailView,CreateView,UpdateView,DeleteView,ListView
 from club.models import Events, WelcomeNote
 import datetime
-from datetime import date
-from datetime import time
-from datetime import datetime
-from datetime import timedelta
+from django.db.models import F
+from datetime import date,time,datetime,timedelta
 # from .forms import teamMember
 
 # Create your views here.
@@ -142,3 +140,10 @@ class GensecUpdateView(UpdateView):
 class GensecDeleteView(DeleteView):
     model = Detail
     success_url= '/stud/gymkhana/CulturalBoard/gensec'
+
+# class ClubDetailView(DetailView):
+#     model = Club
+#
+# class ClubTeamListView(ListView):
+#     model = TeamMember
+#     queryset = TeamMember.objects.filter(club__id = F('club_id'))

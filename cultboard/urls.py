@@ -1,11 +1,15 @@
 from django.urls import path
 from . import views
 from .views import UpcomingEventDetailView,MemberDetailView,MajorEventDetailView,NoteDetailView,GensecDetailView
+# from .views import ClubDetailView
+# from .views import ClubTeamListView
 from .views import UpcomingEventCreateView,MemberCreateView,MajorEventCreateView,GensecCreateView
 from .views import UpcomingEventUpdateView,MemberUpdateView,MajorEventUpdateView,NoteUpdateView,GensecUpdateView
 from .views import UpcomingEventDeleteView,MemberDeleteView,MajorEventDeleteView,NoteDeleteView,GensecDeleteView
 
 urlpatterns = [
+    # path('<int:pk>/',ClubDetailView.as_view(),name='club-detail'),
+    # path('<int:pk>/team',ClubTeamListView.as_view(),name='club-team-detail'),
     path('', views.homepage, name='homepage'),
     path('clubs/', views.clubs, name='clubs'),
     path('majorEvents/', views.majorEvents, name='majorevents'),
@@ -37,5 +41,4 @@ urlpatterns = [
     path('gensec/new',GensecCreateView.as_view(),name='gensec-create'),
     path('gensec/<int:pk>/update',GensecUpdateView.as_view(),name='gensec-update'),
     path('gensec/<int:pk>/delete',GensecDeleteView.as_view(),name='gensec-delete'),
-
 ]

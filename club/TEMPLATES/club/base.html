@@ -10,14 +10,16 @@
   </head>
   <body>
       <nav>
-          <div class="w3-bar w3-black">
-              <a href="{% url 'club-home' %}" class="w3-bar-item w3-button">Home</a>
-              <a href="{% url 'club-events' %}" class="w3-bar-item w3-button">Events</a>
-              <a href="{% url 'club-team' %}" class="w3-bar-item w3-button">Team</a>
-              <a href="{% url 'club-achieve' %}" class="w3-bar-item w3-button">Achievements</a>
-              <a href="{% url 'club-gallery' %}" class="w3-bar-item w3-button">Gallery</a>
-              <a href="{% url 'club-blogs' %}" class="w3-bar-item w3-button">Blogs</a>
-           </div>
+          {% block nav%}
+            <div class="w3-bar w3-black">
+                <a href="{% url 'club-home' %}" class="w3-bar-item w3-button">Home</a>
+                <a href="{% url 'club-events' %}" class="w3-bar-item w3-button">Events</a>
+                <a href="{% url 'club-team' %}" class="w3-bar-item w3-button">Team</a>
+                <a href="{% url 'club-achieve' %}" class="w3-bar-item w3-button">Achievements</a>
+                <a href="{% url 'club-gallery' %}" class="w3-bar-item w3-button">Gallery</a>
+                <a href="{% url 'club-blogs' %}" class="w3-bar-item w3-button">Blogs</a>
+             </div>
+          {% endblock %}
      </nav>
      {% block content %}
      {% endblock %}

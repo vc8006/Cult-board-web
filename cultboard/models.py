@@ -32,7 +32,7 @@ class GallaryEvent(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
-        
+
 class Club(models.Model):
     name = models.CharField(max_length=100)
     logo = models.ImageField(default = 'placeholder.png',upload_to="images")
@@ -45,8 +45,8 @@ class Club(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         img = Image.open(self.logo.path)
-        if(img.height>300 or img.width>300):
-            output_size = (300,300)
+        if(img.height>500 or img.width>500):
+            output_size = (500,500)
             img.thumbnail(output_size)
             img.save(self.logo.path)
 
@@ -143,4 +143,3 @@ class UpcomingEvent(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.logo.path)
-
