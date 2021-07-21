@@ -4,7 +4,7 @@
         <div class="container">
             <img src="{{ achieve.image.url }}" alt="No Image">
             <br> </br>
-            <a href="{% url 'achieve-detail' achieve.id %}">{{ achieve.title }}</a>
+            <a href="{% url 'achieve-detail' club_name achieve.id %}">{{ achieve.title }}</a>
             <p>{{ achieve.content }}</p>
             <p>posted on {{achieve.date|date:"F,d,Y"}}</p>
         </div>

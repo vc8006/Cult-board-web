@@ -4,61 +4,66 @@ from .models import BlogPost,Photo,Achieve,Club, WelcomeNote,Events
 from cultboard.models import TeamMember
 from django.views.generic import DetailView,CreateView,UpdateView,DeleteView
 import datetime
-from datetime import date,time,datetime,timedelta
+from datetime import date
+from datetime import time
+from datetime import datetime
+from datetime import timedelta
+
 
 #  clubs views
-def home(request):
-    Notes = {
-        'welcomenotes' : WelcomeNote.objects.all(),
-    }
-    return render(request,'club/home.html',Notes)
+def home(request,club_name):
+    welcome_note = WelcomeNote.objects.all()
+    return render(request,'club/home.html',{'welcome_note': welcome_note,'club_name':club_name})
 
-def main_page(request):
-    days = 7*3
-    # start_date = date.today()
-    start_date = datetime.now()
-    end_date = start_date + timedelta(days=days)
-    events = Events.objects.filter(expired_date__range=[start_date, end_date])
-    # events=Events.objects.all()
-    return render(request,'club/main_page.html',{'events':events})
+# def main_page(request):
+#     days = 7*3
+#     start_date = datetime.now()
+#     end_date = start_date + timedelta(days=days)
+#     events = Events.objects.filter(expired_date__range=[start_date, end_date])
+#     return render(request,'club/main_page.html',{'events':events})
 
-def events(request):
-    events= Events.objects.all()
-    return render(request,'club/events.html',{'events':events})
+def events(request,club_name):
+    events=Events.objects.filter(club__name=club_name)
+    return render(request,'club/events.html',{'events':events,'club_name':club_name})
 
-def gallery(request):
+def gallery(request,club_name):
     appear= {
-        'photos':Photo.objects.all(),
+        'photos':Photo.objects.filter(club__name=club_name),
+        'club_name':club_name
     }
     return render(request,'club/gallery.html',appear)
 
-def blog(request):
+def blog(request,club_name):
     content= {
-        'posts': BlogPost.objects.filter(status=1).order_by('-created_on'),
+        'posts': BlogPost.objects.filter(club__name=club_name,status=1).order_by('-created_on'),
+        'club_name':club_name
     }
     return render(request,'club/blog.html',content)
 
-def achieve(request):
+def achieve(request,club_name):
     list = {
-        'achievements' : Achieve.objects.all(),
+        'achievements' : Achieve.objects.filter(club__name=club_name),
+        'club_name':club_name,
     }
     return render(request,'club/achievements.html',list)
 
 
-def team(request):
+def team(request,club_name):
     context = {
-        'members': TeamMember.objects.all(),
+        'members': TeamMember.objects.filter(club__name=club_name),
+        'club_name':club_name
     }
     return render(request,'club/team.html',context)
 
-def clubsecy(request):
+def clubsecy(request,club_name):
     info = {
-        'photos':Photo.objects.all(),
-        'posts': BlogPost.objects.filter(status=1).order_by('-created_on'),
-        'achievements' : Achieve.objects.all(),
-        'members': TeamMember.objects.all(),
-        'events':Events.objects.all(),
-        'welcome_note':WelcomeNote.objects.all()
+        'photos':Photo.objects.filter(club__name=club_name),
+        'posts': BlogPost.objects.filter(status=1,club__name=club_name).order_by('-created_on'),
+        'achievements' : Achieve.objects.filter(club__name=club_name),
+        'members': TeamMember.objects.filter(club__name=club_name),
+        'events':Events.objects.filter(club__name=club_name),
+        'welcome_note':WelcomeNote.objects.all(),
+        'club_name':club_name
     }
     return render(request,'club/clubsecy.html',info)
 
@@ -79,7 +84,7 @@ class BlogDeleteView(DeleteView):
     model = BlogPost
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-#Event Views
+
 class EventDetailView(DetailView):
     model = Events
 
@@ -95,7 +100,7 @@ class EventDeleteView(DeleteView):
     model = Events
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-#Team Member Views
+
 class MemberDetailView(DetailView):
     model = TeamMember
 
@@ -111,7 +116,6 @@ class MemberDeleteView(DeleteView):
     model = TeamMember
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-#Achievement Views
 class AchieveDetailView(DetailView):
     model = Achieve
 
@@ -123,11 +127,13 @@ class AchieveUpdateView(UpdateView):
     model = Achieve
     fields = ['club','title','image','content','date']
 
+# def AchieveUpdateView(request,club_name,pk):
+#     return render(request,'club/achieve_form.html',{'club_name':club_name, 'pk':pk})
+
 class AchieveDeleteView(DeleteView):
     model = Achieve
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-#Gallery Views
 class PhotoDetailView(DetailView):
     model = Photo
 
@@ -143,7 +149,7 @@ class PhotoDeleteView(DeleteView):
     model = Photo
     success_url= '/stud/gymkhana/CulturalBoard/Club/clubsecy'
 
-#Welcome Note Views
+
 class WelcomeUpdateView(UpdateView):
     model = WelcomeNote
     fields = ['content']

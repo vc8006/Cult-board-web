@@ -1,13 +1,26 @@
-{% extends "club/base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Club Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
     <div class="container">
         <img src="{{ object.image.url }}" alt="No Image">
         <br> </br>
         <h2>{{ object.title}}</h2>
         <p>{{ object.content }}</p>
-        <p>posted on {{object.date|date:"F,d,Y"}}</p>
-
-        <a href="{% url 'achieve-update' achieve.id %}"><button type="button" name="button">Update</button></a>
-        <a href="{% url 'achieve-delete' achieve.id %}"><button type="button" name="button">Delete</button></a>
+        <p>posted on {{ object.date|date:"F,d,Y" }}</p>
+        
+        <a href="{% url 'achieve-update' object.club object.pk %}"><button type="button" name="button">Update</button></a>
+        <a href="{% url 'achieve-delete' object.club object.pk %}"><button type="button" name="button">Delete</button></a>
+        
     </div>
-{% endblock %}
+    {% endblock %}
+  </body>
+</html>

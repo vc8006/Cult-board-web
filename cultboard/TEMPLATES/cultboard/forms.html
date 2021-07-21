@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+    <title>Secretary Form</title>
+  </head>
+  <body>
+    <form action="/major_events_url/" method="post" id="form1">
+      <label for="majorevents">Major Events Details: </label>
+      <input
+        id="major_events"
+        type="text"
+        name="form1_field"
+        value="Edit Details"
+      />
+      <input type="submit" value="OK" />
+    </form>
+
+    <form action="/upcoming_events_url/" method="post" id="form2">
+      <label for="upcomingevents">Upcoming Events Details: </label>
+      <input
+        id="upcoming_events"
+        type="text"
+        name="form2_field"
+        value="Edit Details"
+      />
+      <input type="submit" value="OK" />
+    </form>
+
+    <form action="/team_url/" method="post" id="form3">
+      <label for="teamdetails">Team Details: </label>
+      <input
+        id="team_details"
+        type="text"
+        name="form3_field"
+        value="Edit Details"
+      />
+      <input type="submit" value="OK" />
+    </form>
+
+    <form action="/home_page_url/" method="post" id="form4">
+      <label for="welcomenote">Welcome Note: </label>
+      <input
+        id="welcome_note"
+        type="text"
+        name="form4_field"
+        value="Edit Details"
+      />
+      <input type="submit" value="OK" />
+    </form>
+
+    <form action="/services_url/" method="post" id="form5">
+      <label for="servicesdetails">Services Details: </label>
+      <input
+        id="services_details"
+        type="text"
+        name="form5_field"
+        value="Edit Details"
+      />
+      <input type="submit" value="OK" />
+    </form>
+  </body>
+</html>

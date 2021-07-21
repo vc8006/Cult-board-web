@@ -17,13 +17,12 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from club import views
 
 urlpatterns = [
     path('stud/gymkhana/CulturalBoard/admin/', admin.site.urls),
     path('stud/gymkhana/CulturalBoard/',include('cultboard.urls')),
-    path('stud/gymkhana/CulturalBoard/Club/',include('club.urls')),
-    # path('accounts/', include('allauth.urls')),
+    # path('stud/gymkhana/CulturalBoard/Club/',include('club.urls')),
+    path('stud/gymkhana/CulturalBoard/<str:club_name>/',include('club.urls')),
 ]
 
 if settings.DEBUG :

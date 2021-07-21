@@ -1,9 +1,21 @@
-{% extends "club/base.html" %}
-{% block content %}
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <legend>Add Blog</legend>
-        {{form.as_p}}
-        <button type="submit" name="button">Post</button>
-    </form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Club Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <legend>Add Blog</legend>
+            {{form.as_p}}
+            <button type="submit" name="button">Post</button>
+        </form>
+    {% endblock %}
+  </body>
+</html>

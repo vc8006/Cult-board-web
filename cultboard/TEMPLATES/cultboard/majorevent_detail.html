@@ -21,10 +21,10 @@
      <u><h2>{{ object.name }}</h2></u>
      <p>{{ object.description }}</p>
      <img src="{{ object.logo.url }}" alt="No Image">
+     <br>
      <a href="{{ object.fb_link }}">Fb</a>
      <a href="{{ object.insta_link }}">Insta</a>
      <a href="{{ object.linkedin_link }}">Linkedin</a>
-     <br>
      <br>
      <a href="{% url 'major_event-update' pk=object.pk %}"><button type="button" name="button">Update</button></a>
      <a href="{% url 'major_event-delete' pk=object.pk %}"><button type="button" name="button">Delete</button></a>

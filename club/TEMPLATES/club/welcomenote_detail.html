@@ -1,8 +1,19 @@
-{% extends "club/base.html" %}
-{% block content %}
-    <h2>Welcome note</h2>
-    <p>{{ object.content }}</p>
-    <br>
-    <a href="{% url 'welcomenote-update' pk=object.pk %}"><button type="button" name="button">Update</button></a>
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Club Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
+        <h2>Welcome note</h2>
+        <p>{{ object.content }}</p>
+        <br>
+        <a href="{% url 'welcomenote-update' object.club object.pk %}"><button type="button" name="button">Update</button></a>
+    {% endblock %}
+  </body>
+</html>

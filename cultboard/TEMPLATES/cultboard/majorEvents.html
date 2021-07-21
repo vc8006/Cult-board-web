@@ -5,8 +5,8 @@
 {% block content %}
     {% for event in major_events %}
         <u><h2>{{ event.name }}</h2></u>
-        <p>{{ event.description }}</p>
         <img src="{{ event.logo.url }}" alt="No Image">
+        <p>{{ event.description }}</p>
         <a href="{{ event.fb_link }}">Fb</a>
         <a href="{{ event.insta_link }}">Insta</a>
         <a href="{{ event.linkedin_link }}">Linkedin</a>

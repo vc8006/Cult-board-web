@@ -1,9 +1,21 @@
-{% extends "club/base.html" %}
-{% block content %}
-<div class="container">
-    <h2>{{ object.title }}</h2>
-    <img src="{{ object.image.url }}" alt="No Image"><br>
-    <a href="{% url 'photo-update' photo.id %}"><button type="button" name="button">Update</button></a>
-    <a href="{% url 'photo-delete' photo.id %}"><button type="button" name="button">Delete</button></a>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Club Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
+    <div class="container">
+        <h2>{{ object.title }}</h2>
+        <img src="{{ object.image.url }}" alt="No Image"><br>
+        <a href="{% url 'photo-update' object.club object.pk %}"><button type="button" name="button">Update</button></a>
+        <a href="{% url 'photo-delete' object.club object.pk %}"><button type="button" name="button">Delete</button></a>
+    </div>
+    {% endblock %}
+  </body>
+</html>

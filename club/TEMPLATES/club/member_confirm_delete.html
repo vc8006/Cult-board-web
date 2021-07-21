@@ -5,6 +5,6 @@
         <legend>Delete Team Member</legend>
         <h2>Are you sure you want to delete {{ object.name }}?</h2>
         <button type="submit" name="button">Delete</button>
-        <a href="{% url 'member-detail' object.id %}">Cancel</a>
+        <a href="{% url 'member-detail' object.club object.pk %}">Cancel</a>
     </form>
 {% endblock %}

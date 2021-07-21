@@ -8,4 +8,12 @@
         <p>{{ note.note }}</p>
         <br>
     {% endfor %}
+    {% for member in gensec %}
+        <u><h2>{{ member.position }}</h2></u>
+        <img src="{{ member.image.url }}" alt="No Image">
+        <u><h3>{{ member.name }}</h3></u>
+        <p>{{ member.info }}</p>
+        <p>{{ member.phone_number }}</p>
+        <p>{{ member.email }}</p>
+    {% endfor %}
 {% endblock %}

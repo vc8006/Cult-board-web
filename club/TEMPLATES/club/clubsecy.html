@@ -1,47 +1,61 @@
-{% extends "club/base.html" %}
-{% block content %}
-<nav>
-    <a href="{% url 'member-create' %}">Add Member</a>
-    <a href="{% url 'achieve-create' %}">Add Achievement</a>
-    <a href="{% url 'photo-create' %}">Add Photo</a>
-    <a href="{% url 'blog-create' %}">Add Blog</a>
-    <a href="{% url 'event-create' %}">Add Event</a>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Club Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+    <nav>
+        <div class="w3-bar w3-black">
+            <a href="{% url 'member-create' club_name %}" class="w3-bar-item w3-button">Add Member</a>
+            <a href="{% url 'achieve-create' club_name %}" class="w3-bar-item w3-button">Add Achievement</a>
+            <a href="{% url 'photo-create' club_name %}" class="w3-bar-item w3-button">Add Photo</a>
+            <a href="{% url 'blog-create' club_name %}" class="w3-bar-item w3-button">Add Blog</a>
+            <a href="{% url 'event-create' club_name %}" class="w3-bar-item w3-button">Add Event</a>
+        </div>
+    </nav>
 
-<h1 style="color:red;" >Achievements</h1>
-{% for achieve in achievements %}
+    {% block content %}
+
+    <h1 style="color:red;" >Achievements</h1>
+    {% for achieve in achievements %}
+        <div class="container">
+            <a href="{% url 'achieve-detail' club_name achieve.id %}">{{ achieve.title }}</a>
+        </div>
+    {% endfor %}
+    
+    <h1 style="color:red;">Welcome Note</h1>
+    {% for note in welcome_note %}
+        <a href="{% url 'welcomenote-detail' club_name note.id %}">Edit Welcome Note</a>  
+    {% endfor %}
+    
+    <h1 style="color:red;" >Team Details</h1>
+    {% for member in members %}
+        <h2>{{ member.name }}</h2>
+        <a href="{% url 'member-detail' club_name member.id %}">{{ member.position }}</a>
+    {% endfor %}
+    
+    <h1 style="color:red;" >Events</h1>
+    {% for event in events %}
+        <h2><a href="{% url 'event-detail' club_name event.id %}">{{ event.title }}</a></h2>
+    {% endfor %}
+    
+    <h1 style="color:red;" >Club Gallery</h1>
+    {% for photo in photos %}
+        <a href="{% url 'photo-detail' club_name photo.id %}"><img src="{{ photo.image.url }}" alt="No Image"></a> <br>
+    {% endfor %}
+    
+    <h1 style="color:red;" >Blogs</h1>
+    {% for post in posts %}
     <div class="container">
-        <a href="{% url 'achieve-detail' pk=achieve.pk %}">{{ achieve.title }}</a>
+        <a href="{% url 'blog-detail' club_name post.id %}">{{ post.title }}</a>
     </div>
-{% endfor %}
-
-<h1 style="color:red;">Welcome Note</h1>
-{% for note in welcome_note %}
-    <!-- <p>{{ note.content }}</p>  -->
-    <a href="{% url 'welcomenote-detail' note.id %}">Edit Welcome Note</a>  
-{% endfor %}
-
-<h1 style="color:red;" >Team Details</h1>
-{% for member in members %}
-    <h2>{{ member.name }}</h2>
-    <a href="{% url 'member-detail' pk=member.pk %}">{{ member.position }}</a>
-{% endfor %}
-
-<h1 style="color:red;" >Events</h1>
-{% for event in events %}
-    <h2><a href="{% url 'event-detail' pk=event.pk %}">{{ event.title }}</a></h2>
-{% endfor %}
-
-<h1 style="color:red;" >Club Gallery</h1>
-{% for photo in photos %}
-    <a href="{% url 'photo-detail' pk=photo.pk %}"><img src="{{ photo.image.url }}" alt="No Image"></a> <br>
-{% endfor %}
-
-<h1 style="color:red;" >Posts</h1>
-{% for post in posts %}
-<div class="container">
-    <a href="{% url 'blog-detail' pk=post.pk %}">{{ post.title }}</a>
-</div>
-{% endfor %}
-
-{% endblock %}
+    {% endfor %}
+    
+    {% endblock %}
+  </body>
+</html>

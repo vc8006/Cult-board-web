@@ -9,19 +9,17 @@
     <script src="{% static 'js/home.js' %}"></script>
   </head>
   <body>
-      <nav>
-          {% block nav%}
-            <div class="w3-bar w3-black">
-                <a href="{% url 'club-home' %}" class="w3-bar-item w3-button">Home</a>
-                <a href="{% url 'club-events' %}" class="w3-bar-item w3-button">Events</a>
-                <a href="{% url 'club-team' %}" class="w3-bar-item w3-button">Team</a>
-                <a href="{% url 'club-achieve' %}" class="w3-bar-item w3-button">Achievements</a>
-                <a href="{% url 'club-gallery' %}" class="w3-bar-item w3-button">Gallery</a>
-                <a href="{% url 'club-blogs' %}" class="w3-bar-item w3-button">Blogs</a>
-             </div>
-          {% endblock %}
-     </nav>
-     {% block content %}
-     {% endblock %}
+    <nav>
+      <div class="w3-bar w3-black">
+        <a href="{% url 'club-home' club_name %}" class="w3-bar-item w3-button">Home</a>
+        <a href="{% url 'club-events' club_name %}" class="w3-bar-item w3-button">Events</a>
+        <a href="{% url 'club-achieve' club_name %}" class="w3-bar-item w3-button">Achievements</a>
+        <a href="{% url 'club-team' club_name %}" class="w3-bar-item w3-button">Team</a>
+        <a href="{% url 'club-blogs' club_name %}" class="w3-bar-item w3-button">Blogs</a>
+        <a href="{% url 'club-gallery' club_name %}" class="w3-bar-item w3-button">Gallery</a>
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
   </body>
 </html>

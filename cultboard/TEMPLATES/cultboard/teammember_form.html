@@ -9,14 +9,14 @@
     <script src="{% static 'js/home.js' %}"></script>
   </head>
   <body>
-      <nav>
-          <div class="w3-bar w3-black">
-              <a href="{% url 'major_event-create' %}" class="w3-bar-item w3-button">Add Major Events</a>
-              <a href="{% url 'upcoming_event-create' %}" class="w3-bar-item w3-button">Add Upcoming Events</a>
-              <a href="{% url 'member-create' %}" class="w3-bar-item w3-button">Add Team Member</a>
-              <a href="{% url 'gensec-create' %}" class="w3-bar-item w3-button">Add Gensec Details</a>
-           </div>
-     </nav>
+    <nav>
+      <div class="w3-bar w3-black">
+          <a href="{% url 'major_event-create' %}" class="w3-bar-item w3-button">Add Major Events</a>
+          <a href="{% url 'upcoming_event-create' %}" class="w3-bar-item w3-button">Add Upcoming Events</a>
+          <a href="{% url 'member-create' %}" class="w3-bar-item w3-button">Add Team Member</a>
+          <a href="{% url 'gensec-create' %}" class="w3-bar-item w3-button">Add Gensec Details</a>
+       </div>
+    </nav>
     {% block content %}
     <form method="POST" enctype="multipart/form-data">
          {% csrf_token %}

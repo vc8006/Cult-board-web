@@ -17,22 +17,20 @@ from cultboard.models import TeamMember
 class Events(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE)
     title = models.CharField(default = None,max_length=(100))
-    image = models.ImageField(default = 'default.jpg',upload_to="media/images")
     content = models.TextField()
     expired_date = models.DateTimeField(default=timezone.now)
 
     def get_absolute_url(self): # new
-        return reverse('event-detail', kwargs={'pk': self.pk})
+        return reverse('event-detail', kwargs={'pk': self.pk,'club_name':self.club})
 
     def __str__(self):
         return self.title
 
 class WelcomeNote(models.Model):
-    club = models.ForeignKey(Club,on_delete= models.CASCADE)
     content = models.TextField()
 
     def get_absolute_url(self): # new
-        return reverse('welcomenote-detail', kwargs={'pk': self.pk})
+        return reverse('welcomenote-detail', kwargs={'pk': self.pk,'club_name':self.club})
 
 # class Member(models.Model):
 #     club = models.ForeignKey(Club,on_delete=models.CASCADE)
@@ -58,7 +56,7 @@ STATUS = {
 class BlogPost(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE)
     title =models.CharField(max_length=100, unique=True)
-    slug= models.SlugField(max_length=200, unique=True)
+    slug= models.SlugField(max_length=200)
     content =models.TextField()
     created_on=models.DateTimeField(auto_now_add=True)
     updated_on=models.DateTimeField(auto_now=True)
@@ -72,7 +70,7 @@ class BlogPost(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog-detail',kwargs={'pk': self.pk})
+        return reverse('blog-detail',kwargs={'pk': self.pk,'club_name':self.club})
 
 class Photo(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE)
@@ -83,13 +81,11 @@ class Photo(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('photo-detail',kwargs={'pk': self.pk})
+        return reverse('photo-detail',kwargs={'pk': self.pk,'club_name':self.club})
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-
         img = Image.open(self.image.path)
-
         if(img.height>300 or img.width>300):
             output_size = (300,300)
             img.thumbnail(output_size)
@@ -106,4 +102,12 @@ class Achieve(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('achieve-detail',kwargs={'pk': self.pk})
+        return reverse('achieve-detail',kwargs={'pk': self.pk,'club_name': self.club})
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.image.path)
+        if(img.height>300 or img.width>300):
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)

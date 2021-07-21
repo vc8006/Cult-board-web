@@ -1,16 +1,26 @@
-{% extends "club/base.html" %}
-{% block content %}
-<div class="container">
-    <h2>{{ object.title }}</h2>
-    <h3>{{ object.slug }}</h3>
-    <p>{{ object.content }}</p>
-    <p>Posted on {{object.created_on}} by {{object.author}}</p>
-    <p>Last Updated: {{object.updated_on}}</p>
-
-    {% if user.is_authenticated %}
-        <a href="{% url 'blog-update' object.id %}"><button type="button" name="button">Update</button></a>
-        <a href="{% url 'blog-delete' object.id %}"><button type="button" name="button">Delete</button></a>
-    {% endif %}
-
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Club Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
+        <div class="container">
+            <h2>{{ object.title }}</h2>
+            <p>{{ object.content }}</p>
+            <p>Posted on {{object.created_on}} by {{object.author}}</p>
+            <p>Last Updated: {{object.updated_on}}</p>
+        
+            {% if user.is_authenticated %}
+              <a href="{% url 'blog-update' object.club object.pk %}"><button type="button" name="button">Update</button></a>
+              <a href="{% url 'blog-delete' object.club object.pk %}"><button type="button" name="button">Delete</button></a>
+            {% endif %}
+        </div>
+    {% endblock %}
+  </body>
+</html>

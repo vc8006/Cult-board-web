@@ -1,10 +1,10 @@
 {% extends "club/base.html" %}
 
 {% block content %}
-    <a href="{% url 'blog-create' %}" class="btn btn-secondary">Add Blog</a>
+<a href="{% url 'blog-create' club_name %}" class="btn btn-secondary">Add Blog</a>
     {% for post in posts %}     
         <div>
-            <a href="{% url 'blog-detail' post.id %}"><h2>{{ post.title }}</h2></a>
+            <a href="{% url 'blog-detail' club_name post.id %}"><h2>{{ post.title }}</h2></a>
             <p class="text-muted">{{ post.author }} | {{ post.created_on }}</p>
             <p>{{ post.content|slice:":150" }}</p>
             <small class="text-muted">Last updated: {{ post.updated_on }}</small>

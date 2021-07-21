@@ -1,10 +1,22 @@
-{% extends "club/base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+        <title>Club Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
     <form method="POST">
         {% csrf_token %}
         <legend>Delete Post</legend>
         <h2>Are you sure you want to delete {{ object.title }}?</h2>
         <button type="submit" name="button">Delete</button>
-        <a href="{% url 'photo-detail' object.id %}">Cancel</a>
+        <a href="{% url 'photo-detail' object.club object.pk %}">Cancel</a>
     </form>
-{% endblock %}
+    {% endblock %}
+  </body>
+</html>

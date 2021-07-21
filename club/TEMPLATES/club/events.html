@@ -1,7 +1,6 @@
 {% extends "club/base.html" %}
 {% block content %}
-    {% for event in events %}
-        <img src="{{ event.image.url }}" alt="No Image">     
+    {% for event in events %}  
         <h2>{{ event.title }}</h2>
         <p>{{ event.content }}</p>
     {% endfor %}
